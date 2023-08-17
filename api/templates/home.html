@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phân loại hạt cà phê</title>
+    <style>
+      /* CSS để trình bày giao diện */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-image: url("https://caphenguyenchat.vn/wp-content/uploads/2022/08/top-8-loai-ca-phe-ngon-nhat-the-gioi-ca-phe-ngon-nhat.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      #container {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      h1 {
+        color: #993300;
+        margin-bottom: 20px;
+      }
+      #coffeeImage {
+        max-width: 300px;
+        margin: 20px auto;
+      }
+      #result {
+        margin: 20px auto;
+        color: #006600;
+      }
+      /* Style for the upload icon */
+      #uploadIcon {
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-image: url("https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/image-upload-icon.png"); /* Replace with the actual URL of your upload icon */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 20px auto;
+        cursor: pointer;
+      }
+      /* Hide the file input */
+      #coffeeInput {
+        display: none;
+      }
+      #videoElement {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+
+    #canvas {
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Đánh giá hạt cà phê</h1>
+      <!-- Add an additional label to wrap the upload icon and hide the file input -->
+      <label for="coffeeInput" id="uploadIconWrapper">
+        <div id="uploadIcon"></div>
+      </label>
+      <input type="file" id="coffeeInput" accept="image/*" />
+      <br />
+      <div>
+        <form method="post" action="{{ url_for('tasks') }}">
+          <input type="submit" value="Stop/Start" name="stop" />
+          <input id="captureInput" type="submit" value="Capture" name="click"/>
+        </form>
+      </div>
+      <img src="{{ url_for('video_feed') }}" height="10%">
+      <br />
+      <div id="result">{{name_class}} {{confidence_score}}</div>
+      <img
+        id="coffeeImage"
+        src="https://caphenguyenchat.vn/wp-content/uploads/2022/08/top-8-loai-ca-phe-ngon-nhat-the-gioi-ca-phe-ngon-nhat.jpg"
+        alt="Hình ảnh cà phê"
+      />
+      <br />
+    </div>
+  </body>
+
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+
+</html>
